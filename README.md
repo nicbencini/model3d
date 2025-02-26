@@ -1,37 +1,51 @@
-# About the project
-Scpyce is an SQL based library for building and visualising finite element models.
+# Model3d
 
-_For more information on the project structure, please refer to the [Documentation](https://github.com/nicbencini/scpyce/tree/main/docs)_.
+## Overview
+This library provides a `Vector3d` class for performing 3D vector operations using NumPy. It supports fundamental vector calculations such as dot product, cross product, magnitude, normalization, and parallelism checks.
 
-# The solver
-Sign Convention:
-- Positive values represent upward forces
-- Negative values represent downward forces
-- Clockwise moments are positive moments
-- Counter Clockwise moments are negative moments
+## Features
+- **Basic Vector Operations**: Dot product, cross product, magnitude, and unit vector computation.
+- **Component Access**: Access and modify `x`, `y`, and `z` components directly.
+- **Predefined Unit Vectors**: Unit vectors along the `x`, `y`, and `z` axes.
+- **Vector Comparisons**: Check equality and parallelism of vectors.
+- **Orthogonalization**: Gram-Schmidt process for generating orthogonal vectors.
 
-Units:
-- Force: kN
-- Moment: KNm
-- Distance: m
-- Area: m^2
-- Density kN/m^3
-- Moment of inertia: m^4
-- Youngs Modulus: MPa
-- Embodied carbon: kgCO2e/m^3
-- Coefficient of thermal expansion : 1/c
+## Installation
+```bash
+pip install numpy  # Ensure NumPy is installed
+```
 
-# Getting started
-_For examples on how to use the solver, please refer to the [Examples](https://github.com/nicbencini/scpyce/tree/main/examples)_.
+## Usage
+```python
+import numpy as np
+from vector3d import Vector3d
 
-# Contributing
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+# Create a new vector
+v1 = Vector3d([1, 2, 3])
+v2 = Vector3d([4, 5, 6])
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
+# Compute magnitude and unit vector
+print(v1.magnitude())  # Output: Magnitude of v1
+print(v1.unit())       # Output: Unit vector of v1
 
-# License
-Distributed under the MIT License. See LICENSE.txt for more information.
+# Perform dot and cross products
+dot = v1.dot_product(v2)
+cross = v1.cross_product(v2)
 
-# Contact
-Email: nicbencini@gmail.com
-LinkedIn: [Nicolo Bencini](https://www.linkedin.com/in/nicolo-bencini/)
+print(dot)   # Output: Dot product of v1 and v2
+print(cross) # Output: Cross product of v1 and v2
+
+# Check parallelism
+print(v1.is_parallel_to(v2))
+
+# Access and modify components
+print(v1.x, v1.y, v1.z)
+v1.x = 10  # Update x component
+print(v1)
+```
+
+## License
+This project is licensed under the MIT License.
+
+## Contributions
+Contributions are welcome! Feel free to open issues and submit pull requests.
